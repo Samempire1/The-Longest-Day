@@ -151,7 +151,7 @@ const STORY=[
 ];
 
 let step=0,cipAttempts=0,soundOn=false,audioCtx=null,activeSrc=null;
-const CIP={prompt:"The Enigma intercept reads: GSROH. The indicator sheet shows a Caesar shift of +4. Decode each letter by subtracting 4 from its position in the alphabet (A=0). What does it say?",encoded:"G  S  R  O  H",raw:"GSROH",answer:"NORTH",hint:"Caesar shift: subtract 4 from each letter's index. G(6)→C... wait, re-examine. G=6, 6-4=2=C? The answer is a cardinal compass direction. Try each letter carefully."};
+const CIP={prompt:"The Enigma intercept reads: GSROH. The indicator sheet shows a Caesar shift of +4. Decode each letter by subtracting 4 from its position in the alphabet (A=0). What does it say?",encoded:"R  S  V  X  L",raw:"RSVXL",answer:"NORTH",hint:"Caesar shift: subtract 4 from each letter's index. R(17)→N(13), S(18)→O(14), V(21)→R(17), X(23)→T(19), L(11)→H(7). The answer is a cardinal compass direction."};
 
 const canvas=document.getElementById('bgCanvas');
 const ctx2=canvas.getContext('2d');
@@ -365,7 +365,7 @@ function checkCipher(){
       [523,659,784,1047].forEach((f,i)=>{const o=audioCtx.createOscillator();o.frequency.value=f;o.type='sine';o.connect(g);o.start(audioCtx.currentTime+i*.12);o.stop(audioCtx.currentTime+i*.12+.35);});
     }
   } else {
-    const msgs=['Not quite. Subtract 4 from each letter\'s alphabet index.','Try again. Work through each letter one by one.','Keep going — the answer is a compass direction.','Hint: the word is NORTH.'];
+    const msgs=['Not quite. Subtract 4 from each letter\'s alphabet index. R(17)−4=13=N.','Try again. S(18)−4=14=O, V(21)−4=17=R. Keep going.','Almost there — X(23)−4=19=T, L(11)−4=7=H.','The answer is NORTH. N-O-R-T-H.'];
     document.getElementById('cip-fb').textContent=msgs[Math.min(cipAttempts-1,msgs.length-1)];
     document.getElementById('cip-fb').style.color='#7a5a3a';
   }
